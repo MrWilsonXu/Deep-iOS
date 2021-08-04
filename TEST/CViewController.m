@@ -25,8 +25,16 @@
     NSLog(@"%@ --> release", [self class]);
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (self.p1.observationInfo) {
+        [self.p1 removeObserver:self forKeyPath:@"name"];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.view.backgroundColor = [UIColor yellowColor];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发送通知" style:UIBarButtonItemStylePlain target:self action:@selector(clickSend)];
 //    [self testSemaphore];
@@ -61,13 +69,6 @@
 - (void)clickSend {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"CViewControllerPost" object:nil userInfo:nil];
     [self testSemaphore];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    if (self.p1.observationInfo) {
-        [self.p1 removeObserver:self forKeyPath:@"name"];
-    }
 }
 
 - (void)testAutoReleasePool {
@@ -155,10 +156,13 @@
     id cls2 = object_getClass(p2);
     NSLog(@"添加 KVO 之前: cls1 = %@  cls2 = %@ ",cls1,cls2);
    
+    [self.p1 addObserver:self forKeyPath:@"gender" options:NSKeyValueObservingOptionNew context:NULL];
     [self.p1 addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:NULL];
+    
+    // KVO在注册观察者时会以被观察者为 父类 生成一个中间类
     cls1 = object_getClass(self.p1);
     cls2 = object_getClass(p2);
-    NSLog(@"添加 KVO 之后: cls1 = %@  cls2 = %@ ",cls1,cls2);
+    NSLog(@"添加 KVO 之后: cls1 = %@  cls2 = %@",cls1,cls2);
    
     [self printPersonMethods:cls1];
     [self printPersonMethods:cls2];
@@ -173,15 +177,23 @@
 - (void)printPersonMethods:(id)obj {
     unsigned int count = 0;
     Method *methods = class_copyMethodList([obj class], &count);
-    NSMutableArray *array = [[NSMutableArray alloc] init];
+    NSMutableArray *arrayMethods = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < count; i++) {
         Method method = methods[i];
         SEL sel = method_getName(method);
-        [array addObject:NSStringFromSelector(sel)];
+        [arrayMethods addObject:NSStringFromSelector(sel)];
     }
     free(methods);
-    NSLog(@"%@", array);
+    NSLog(@"arrayMethods: %@", arrayMethods);
+    
+    Ivar *ivars = class_copyIvarList([obj class], &count);
+    for (int i = 0; i < count; i++) {
+        Ivar var = ivars[i];
+        NSLog(@"arrayIvars: %s", ivar_getName(var));
+    }
+    free(ivars);
+    
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
