@@ -9,6 +9,7 @@
 #import "CViewController.h"
 #import "objc/runtime.h"
 #import "Person.h"
+#import "CustomButton.h"
 
 @interface CViewController ()
 
@@ -16,6 +17,8 @@
 @property(nonatomic, copy) NSString *strCopy;
 @property(nonatomic, strong) NSString *strStrong;
 @property(strong, nonatomic) Person *p1;
+@property (nonatomic, strong) CustomButton *customBtn;
+
 
 @end
 
@@ -36,6 +39,9 @@
     [super viewDidLoad];
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.view.backgroundColor = [UIColor yellowColor];
+    self.customBtn = [[CustomButton alloc] initWithFrame:CGRectMake(20, 100, 200, 200)];
+    [self.customBtn addTarget:self action:@selector(clickCustomBtn) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.customBtn];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发送通知" style:UIBarButtonItemStylePlain target:self action:@selector(clickSend)];
 //    [self testSemaphore];
     [self testMethodKVO];
@@ -69,6 +75,10 @@
 - (void)clickSend {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"CViewControllerPost" object:nil userInfo:nil];
     [self testSemaphore];
+}
+
+- (void)clickCustomBtn {
+    NSLog(@"自定义按钮，测试事件响应者链条关系");
 }
 
 - (void)testAutoReleasePool {

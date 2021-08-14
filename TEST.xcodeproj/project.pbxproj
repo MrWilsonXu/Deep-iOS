@@ -12,6 +12,7 @@
 		C83ACB8E24226A5800B53E40 /* CViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C83ACB8D24226A5800B53E40 /* CViewController.m */; };
 		C83B245224205FB300A514F5 /* BViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B245124205FB300A514F5 /* BViewController.swift */; };
 		C84707B1247293420091CA45 /* DVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84707B0247293420091CA45 /* DVC.swift */; };
+		C84DDDBD26BFB7C6006F8040 /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C84DDDBC26BFB7C6006F8040 /* CustomButton.m */; };
 		C8732157241FB79C00DE6C17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8732156241FB79C00DE6C17 /* AppDelegate.swift */; };
 		C873215B241FB79C00DE6C17 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C873215A241FB79C00DE6C17 /* ViewController.swift */; };
 		C873215E241FB79C00DE6C17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C873215C241FB79C00DE6C17 /* Main.storyboard */; };
@@ -30,6 +31,8 @@
 		C83ACB8D24226A5800B53E40 /* CViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CViewController.m; sourceTree = "<group>"; };
 		C83B245124205FB300A514F5 /* BViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BViewController.swift; sourceTree = "<group>"; };
 		C84707B0247293420091CA45 /* DVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DVC.swift; sourceTree = "<group>"; };
+		C84DDDBB26BFB7C6006F8040 /* CustomButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
+		C84DDDBC26BFB7C6006F8040 /* CustomButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
 		C8732153241FB79C00DE6C17 /* TEST.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TEST.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8732156241FB79C00DE6C17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C873215A241FB79C00DE6C17 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +71,8 @@
 			children = (
 				C83ACB89242269DC00B53E40 /* Person.h */,
 				C83ACB8A242269DC00B53E40 /* Person.m */,
+				C84DDDBB26BFB7C6006F8040 /* CustomButton.h */,
+				C84DDDBC26BFB7C6006F8040 /* CustomButton.m */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -237,6 +242,7 @@
 				C873215B241FB79C00DE6C17 /* ViewController.swift in Sources */,
 				C83B245224205FB300A514F5 /* BViewController.swift in Sources */,
 				C83ACB8E24226A5800B53E40 /* CViewController.m in Sources */,
+				C84DDDBD26BFB7C6006F8040 /* CustomButton.m in Sources */,
 				C84707B1247293420091CA45 /* DVC.swift in Sources */,
 				C83ACB8B242269DC00B53E40 /* Person.m in Sources */,
 				C8732157241FB79C00DE6C17 /* AppDelegate.swift in Sources */,
