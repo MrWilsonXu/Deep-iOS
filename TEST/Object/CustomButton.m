@@ -31,7 +31,6 @@
     self.layer.masksToBounds = YES;
     [self addSubview:self.centerView];
     self.layer.delegate = self;
-    [UIApplication sharedApplication]
 }
 
 - (void)layoutSubviews {

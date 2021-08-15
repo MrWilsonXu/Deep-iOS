@@ -18,7 +18,7 @@
 @property(nonatomic, strong) NSString *strStrong;
 @property(strong, nonatomic) Person *p1;
 @property (nonatomic, strong) CustomButton *customBtn;
-
+@property (nonatomic, strong) NSMutableArray *testBlockArray;
 
 @end
 
@@ -45,6 +45,9 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发送通知" style:UIBarButtonItemStylePlain target:self action:@selector(clickSend)];
 //    [self testSemaphore];
     [self testMethodKVO];
+//    [self testTagedPointer];
+//    [self testRunLoop];
+    [self testBlock];
 }
 
 - (void)testSemaphore {
@@ -99,12 +102,14 @@
 
 - (void)testBlock {
     //block的内部结构
-    NSMutableArray *array = [@[@"name"] mutableCopy];
+    self.testBlockArray = [@[@"name"] mutableCopy];
+    __weak typeof(self) weakSelf = self;
+    
     self.block = ^{
-        [array addObject:@"age"];
+        [weakSelf.testBlockArray addObject:@"age"];
     };
     self.block();
-    NSLog(@"array=%@",array);
+    NSLog(@"array=%@",self.testBlockArray);
 }
 
 - (void)testCopyString {
@@ -210,6 +215,18 @@
     if ([keyPath isEqualToString:@"name"]) {
         NSLog(@"触发了kvo");
     }
+}
+
+- (void)testTagedPointer {
+    NSString *a = @"a";
+    NSNumber *num1 = @24;
+    NSNumber *num2 = @8;
+    
+    NSLog(@"测试Taged_Pointer \n a = %p; num1 = %p, num2 = %p, person = %p",a,num1,num2, self.p1);
+}
+
+- (void)testRunLoop {
+    NSLog(@"打印主线程的RunLoop：\n %@", [NSRunLoop mainRunLoop]);
 }
 
 @end
