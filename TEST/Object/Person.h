@@ -10,7 +10,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Person : NSObject
+@interface Person : NSObject{
+    @public
+    int height;
+}
 
 @property (nonatomic, copy) NSString *name;
 
