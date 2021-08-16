@@ -30,7 +30,8 @@ class BViewController: UIViewController, NSMachPortDelegate {
         weak var weakSelf = self
         let queue = OperationQueue()
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "CViewControllerPost"), object: nil, queue: queue) { (notifation) in
-            weakSelf?.notiString = "receive new notification"
+            weakSelf?.notiString = String(format: "收到了通知，在%@线程", Thread.current);
+            print(weakSelf?.notiString as Any);
         }
     }
     

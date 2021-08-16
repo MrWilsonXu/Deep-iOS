@@ -13,7 +13,7 @@
 
 @interface CViewController ()
 
-@property(copy, nonatomic) void (^block)(void);
+@property(nonatomic, copy) void (^block)(void);
 @property(nonatomic, copy) NSString *strCopy;
 @property(nonatomic, strong) NSString *strStrong;
 @property(strong, nonatomic) Person *p1;
@@ -43,21 +43,24 @@
     [self.customBtn addTarget:self action:@selector(clickCustomBtn) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.customBtn];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发送通知" style:UIBarButtonItemStylePlain target:self action:@selector(clickSend)];
+    
 //    [self testSemaphore];
-    [self testMethodKVO];
+//    [self testMethodKVO];
 //    [self testTagedPointer];
 //    [self testRunLoop];
-    [self testBlock];
+//    [self testBlock];
+    [self testGCD];
 }
 
 - (void)testSemaphore {
     // 创建信号量，可以控制最大并发量，如设置为x，则最大并发为x
-    dispatch_semaphore_t sem = dispatch_semaphore_create(5);
+    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
     dispatch_queue_t queue = dispatch_queue_create("Wilson", DISPATCH_QUEUE_CONCURRENT);
     
-    //同时执行100个任务
+    //同时执行100个任务，可能会创建很多子线程，单不会超过100，线程池中会出现重用
      for (int i = 0; i < 100; i++) {
         dispatch_async(queue, ^{
+            NSLog(@"当前线程--> %@", [NSThread currentThread]);
             //当前信号量-1
             dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
                     
@@ -76,8 +79,12 @@
 }
 
 - (void)clickSend {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"CViewControllerPost" object:nil userInfo:nil];
-    [self testSemaphore];
+    // 在子线程中发送通知
+    dispatch_queue_t subQueue = dispatch_queue_create("com.wilson", DISPATCH_QUEUE_SERIAL);
+    dispatch_async(subQueue, ^{
+        NSLog(@"当前线程为：%@",[NSThread currentThread]);
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"CViewControllerPost" object:nil userInfo:nil];
+    });
 }
 
 - (void)clickCustomBtn {
@@ -227,7 +234,34 @@
 }
 
 - (void)testRunLoop {
-    NSLog(@"打印主线程的RunLoop：\n %@", [NSRunLoop mainRunLoop]);
+//    NSLog(@"打印主线程的RunLoop：\n %@", [NSRunLoop mainRunLoop]);
+}
+
+- (void)testGCD {
+    NSLog(@"1");
+
+    dispatch_sync(dispatch_get_global_queue(0, 0), ^{
+        NSLog(@"2");
+        dispatch_sync(dispatch_get_global_queue(0, 0), ^{
+            NSLog(@"3");
+        });
+        NSLog(@"4");
+    });
+
+    NSLog(@"5");
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSLog(@"GCD当前线程--> %@", [NSThread currentThread]);
+        NSLog(@"6");
+        // afterDelay 函数本质是在RunLoop中添加Timer执行
+        [self performSelector:@selector(asyncSelectorMethod) withObject:nil afterDelay:0];
+        NSLog(@"8");
+    });
+    NSLog(@"9");
+}
+
+- (void)asyncSelectorMethod {
+    NSLog(@"7");
 }
 
 @end
