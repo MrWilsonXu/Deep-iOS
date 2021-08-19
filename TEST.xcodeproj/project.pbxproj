@@ -8,9 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		1B6F99C33E0806E26B46A42C /* Pods_TEST.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45999623B6E98CB1F75EF754 /* Pods_TEST.framework */; };
+		41E53B8D26CE31D500BD6AE9 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E53B8B26CE31D500BD6AE9 /* Student.m */; };
+		41E53B8E26CE31D500BD6AE9 /* YSProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E53B8C26CE31D500BD6AE9 /* YSProxy.m */; };
+		41E53B9526CE63AB00BD6AE9 /* RunLoop_RuntimeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E53B9426CE63AB00BD6AE9 /* RunLoop_RuntimeVC.m */; };
 		C83ACB8B242269DC00B53E40 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = C83ACB8A242269DC00B53E40 /* Person.m */; };
 		C83ACB8E24226A5800B53E40 /* CViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C83ACB8D24226A5800B53E40 /* CViewController.m */; };
-		C83B245224205FB300A514F5 /* BViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83B245124205FB300A514F5 /* BViewController.swift */; };
 		C84707B1247293420091CA45 /* DVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84707B0247293420091CA45 /* DVC.swift */; };
 		C84DDDBD26BFB7C6006F8040 /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C84DDDBC26BFB7C6006F8040 /* CustomButton.m */; };
 		C8732157241FB79C00DE6C17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8732156241FB79C00DE6C17 /* AppDelegate.swift */; };
@@ -21,6 +23,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		41E53B8926CE31D500BD6AE9 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
+		41E53B8A26CE31D500BD6AE9 /* YSProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSProxy.h; sourceTree = "<group>"; };
+		41E53B8B26CE31D500BD6AE9 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
+		41E53B8C26CE31D500BD6AE9 /* YSProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSProxy.m; sourceTree = "<group>"; };
+		41E53B9326CE63AB00BD6AE9 /* RunLoop_RuntimeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RunLoop_RuntimeVC.h; sourceTree = "<group>"; };
+		41E53B9426CE63AB00BD6AE9 /* RunLoop_RuntimeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RunLoop_RuntimeVC.m; sourceTree = "<group>"; };
 		45999623B6E98CB1F75EF754 /* Pods_TEST.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TEST.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ACE38454128EF38F77CE40E /* Pods-TEST.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TEST.release.xcconfig"; path = "Target Support Files/Pods-TEST/Pods-TEST.release.xcconfig"; sourceTree = "<group>"; };
 		6FF5E8D3E0EFE7F12391362E /* Pods-TEST.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TEST.debug.xcconfig"; path = "Target Support Files/Pods-TEST/Pods-TEST.debug.xcconfig"; sourceTree = "<group>"; };
@@ -29,7 +37,6 @@
 		C83ACB8A242269DC00B53E40 /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		C83ACB8C24226A5800B53E40 /* CViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CViewController.h; sourceTree = "<group>"; };
 		C83ACB8D24226A5800B53E40 /* CViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CViewController.m; sourceTree = "<group>"; };
-		C83B245124205FB300A514F5 /* BViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BViewController.swift; sourceTree = "<group>"; };
 		C84707B0247293420091CA45 /* DVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DVC.swift; sourceTree = "<group>"; };
 		C84DDDBB26BFB7C6006F8040 /* CustomButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
 		C84DDDBC26BFB7C6006F8040 /* CustomButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
@@ -69,6 +76,10 @@
 		418A21BF26B8E1C9007D1AC1 /* Object */ = {
 			isa = PBXGroup;
 			children = (
+				41E53B8926CE31D500BD6AE9 /* Student.h */,
+				41E53B8B26CE31D500BD6AE9 /* Student.m */,
+				41E53B8A26CE31D500BD6AE9 /* YSProxy.h */,
+				41E53B8C26CE31D500BD6AE9 /* YSProxy.m */,
 				C83ACB89242269DC00B53E40 /* Person.h */,
 				C83ACB8A242269DC00B53E40 /* Person.m */,
 				C84DDDBB26BFB7C6006F8040 /* CustomButton.h */,
@@ -110,9 +121,10 @@
 				418A21BF26B8E1C9007D1AC1 /* Object */,
 				C8732156241FB79C00DE6C17 /* AppDelegate.swift */,
 				C873215A241FB79C00DE6C17 /* ViewController.swift */,
-				C83B245124205FB300A514F5 /* BViewController.swift */,
 				C83ACB8C24226A5800B53E40 /* CViewController.h */,
 				C83ACB8D24226A5800B53E40 /* CViewController.m */,
+				41E53B9326CE63AB00BD6AE9 /* RunLoop_RuntimeVC.h */,
+				41E53B9426CE63AB00BD6AE9 /* RunLoop_RuntimeVC.m */,
 				C84707B0247293420091CA45 /* DVC.swift */,
 				C873215C241FB79C00DE6C17 /* Main.storyboard */,
 				C873215F241FB79D00DE6C17 /* Assets.xcassets */,
@@ -240,11 +252,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C873215B241FB79C00DE6C17 /* ViewController.swift in Sources */,
-				C83B245224205FB300A514F5 /* BViewController.swift in Sources */,
 				C83ACB8E24226A5800B53E40 /* CViewController.m in Sources */,
+				41E53B8D26CE31D500BD6AE9 /* Student.m in Sources */,
 				C84DDDBD26BFB7C6006F8040 /* CustomButton.m in Sources */,
+				41E53B8E26CE31D500BD6AE9 /* YSProxy.m in Sources */,
 				C84707B1247293420091CA45 /* DVC.swift in Sources */,
 				C83ACB8B242269DC00B53E40 /* Person.m in Sources */,
+				41E53B9526CE63AB00BD6AE9 /* RunLoop_RuntimeVC.m in Sources */,
 				C8732157241FB79C00DE6C17 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

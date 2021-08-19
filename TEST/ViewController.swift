@@ -103,11 +103,15 @@ class ViewController: UIViewController {
         queue.addOperation(ope3)
     }
     
+    @IBAction func showRunLoop(_ sender: UIButton) {
+        let vc = RunLoop_RuntimeVC();
+        show(vc, sender: nil);
+    }
+    
     func testGCDQueue() {
-        //主队列同步执行和Operation相互依赖都可以造成死锁
         /**
          DispatchQueue.main.sync {
-            print("主队列同步，造成死锁")
+            print("死锁")
          }
          */
         
