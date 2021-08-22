@@ -146,10 +146,6 @@ void observeRunLoopActicities(CFRunLoopObserverRef observer, CFRunLoopActivity a
 {
     dispatch_async(self.wilson_queue, ^{
         self.timer = [NSTimer timerWithTimeInterval:5.0 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
-        /**
-         * 子线程保活，必须要要线程加入到 NSMachPort 中
-         * 若需要子线程执行完任务后 Runloop 退出（并非休眠），则不要把线程加入到 NSMachPort 中
-         */
 //        [[NSRunLoop currentRunLoop] addPort:[NSMachPort port] forMode:NSRunLoopCommonModes];
         [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
