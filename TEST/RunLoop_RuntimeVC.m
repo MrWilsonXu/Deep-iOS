@@ -145,13 +145,13 @@ void observeRunLoopActicities(CFRunLoopObserverRef observer, CFRunLoopActivity a
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     dispatch_async(self.wilson_queue, ^{
-        self.timer = [NSTimer timerWithTimeInterval:5.0 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
+        self.timer = [NSTimer timerWithTimeInterval:2.0 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
 //        [[NSRunLoop currentRunLoop] addPort:[NSMachPort port] forMode:NSRunLoopCommonModes];
         [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-        
-        // 任务完成，runloop已经结束，线程销毁
-        NSLog(@"currentRunLoop ---> end");
+
+        // 任务完成，runloop退出
+        NSLog(@"currentRunLoop ---> end --> %@",[NSRunLoop currentRunLoop]);
     });
 }
 
