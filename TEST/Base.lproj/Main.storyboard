@@ -44,6 +44,13 @@
                                     <action selector="push:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tcY-Nr-2eR"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sx3-h2-skP">
+                                <rect key="frame" x="136" y="517" width="142" height="30"/>
+                                <state key="normal" title="显示CViewController"/>
+                                <connections>
+                                    <action selector="showCVC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f25-0M-0fy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -53,7 +60,9 @@
                             <constraint firstItem="aGl-bZ-Fnc" firstAttribute="top" secondItem="06g-cz-ZP0" secondAttribute="bottom" constant="8" id="9zc-RU-e5T"/>
                             <constraint firstItem="AWO-eN-haF" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="HNW-7b-oxc"/>
                             <constraint firstItem="aGl-bZ-Fnc" firstAttribute="top" secondItem="AWO-eN-haF" secondAttribute="bottom" constant="253" id="OfY-Yl-CCN"/>
+                            <constraint firstItem="sx3-h2-skP" firstAttribute="top" secondItem="aC6-K7-Dxh" secondAttribute="bottom" constant="24" id="TNr-Zu-cB6"/>
                             <constraint firstItem="aGl-bZ-Fnc" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="clX-a9-vcj"/>
+                            <constraint firstItem="sx3-h2-skP" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="hXh-sQ-aDM"/>
                             <constraint firstItem="aC6-K7-Dxh" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="rgK-cl-Fs5"/>
                             <constraint firstItem="06g-cz-ZP0" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="vVe-HM-i3V"/>
                         </constraints>

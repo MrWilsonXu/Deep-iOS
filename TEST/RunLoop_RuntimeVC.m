@@ -146,12 +146,13 @@ void observeRunLoopActicities(CFRunLoopObserverRef observer, CFRunLoopActivity a
 {
     dispatch_async(self.wilson_queue, ^{
         self.timer = [NSTimer timerWithTimeInterval:2.0 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
+        // NSMachPort 相当于是添加 sources1事件
 //        [[NSRunLoop currentRunLoop] addPort:[NSMachPort port] forMode:NSRunLoopCommonModes];
         [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
 
         // 任务完成，runloop退出
-        NSLog(@"currentRunLoop ---> end --> %@",[NSRunLoop currentRunLoop]);
+        NSLog(@"currentRunLoop ---> 退出 --> %@",[NSRunLoop currentRunLoop]);
     });
 }
 

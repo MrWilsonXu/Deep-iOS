@@ -13,6 +13,7 @@
 		41E53B9526CE63AB00BD6AE9 /* RunLoop_RuntimeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E53B9426CE63AB00BD6AE9 /* RunLoop_RuntimeVC.m */; };
 		C83ACB8B242269DC00B53E40 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = C83ACB8A242269DC00B53E40 /* Person.m */; };
 		C83ACB8E24226A5800B53E40 /* CViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C83ACB8D24226A5800B53E40 /* CViewController.m */; };
+		C8439BA426D8F73D00538B60 /* FVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C8439BA326D8F73D00538B60 /* FVC.m */; };
 		C84707B1247293420091CA45 /* DVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84707B0247293420091CA45 /* DVC.swift */; };
 		C84DDDBD26BFB7C6006F8040 /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C84DDDBC26BFB7C6006F8040 /* CustomButton.m */; };
 		C855FB3226D28EBA00B2B29A /* MJPermenantThread.m in Sources */ = {isa = PBXBuildFile; fileRef = C855FB3026D28EBA00B2B29A /* MJPermenantThread.m */; };
@@ -38,6 +39,8 @@
 		C83ACB8A242269DC00B53E40 /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		C83ACB8C24226A5800B53E40 /* CViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CViewController.h; sourceTree = "<group>"; };
 		C83ACB8D24226A5800B53E40 /* CViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CViewController.m; sourceTree = "<group>"; };
+		C8439BA226D8F73D00538B60 /* FVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FVC.h; sourceTree = "<group>"; };
+		C8439BA326D8F73D00538B60 /* FVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FVC.m; sourceTree = "<group>"; };
 		C84707B0247293420091CA45 /* DVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DVC.swift; sourceTree = "<group>"; };
 		C84DDDBB26BFB7C6006F8040 /* CustomButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
 		C84DDDBC26BFB7C6006F8040 /* CustomButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
@@ -128,6 +131,8 @@
 				C873215A241FB79C00DE6C17 /* ViewController.swift */,
 				C83ACB8C24226A5800B53E40 /* CViewController.h */,
 				C83ACB8D24226A5800B53E40 /* CViewController.m */,
+				C8439BA226D8F73D00538B60 /* FVC.h */,
+				C8439BA326D8F73D00538B60 /* FVC.m */,
 				41E53B9326CE63AB00BD6AE9 /* RunLoop_RuntimeVC.h */,
 				41E53B9426CE63AB00BD6AE9 /* RunLoop_RuntimeVC.m */,
 				C84707B0247293420091CA45 /* DVC.swift */,
@@ -256,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8439BA426D8F73D00538B60 /* FVC.m in Sources */,
 				C873215B241FB79C00DE6C17 /* ViewController.swift in Sources */,
 				C855FB3226D28EBA00B2B29A /* MJPermenantThread.m in Sources */,
 				C83ACB8E24226A5800B53E40 /* CViewController.m in Sources */,

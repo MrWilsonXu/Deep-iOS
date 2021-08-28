@@ -10,6 +10,7 @@
 #import "objc/runtime.h"
 #import "Person.h"
 #import "CustomButton.h"
+#import "FVC.h"
 
 @interface CViewController ()
 
@@ -42,23 +43,25 @@
     self.customBtn = [[CustomButton alloc] initWithFrame:CGRectMake(20, 100, 200, 200)];
     [self.customBtn addTarget:self action:@selector(clickCustomBtn) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.customBtn];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"发送通知" style:UIBarButtonItemStylePlain target:self action:@selector(clickSend)];
+    UIBarButtonItem *noti = [[UIBarButtonItem alloc] initWithTitle:@"发送通知" style:UIBarButtonItemStylePlain target:self action:@selector(clickSend)];
+    UIBarButtonItem *showFVC = [[UIBarButtonItem alloc] initWithTitle:@"显示FVC" style:UIBarButtonItemStylePlain target:self action:@selector(clickFVC)];
+    self.navigationItem.rightBarButtonItems = @[noti, showFVC];
     
-//    [self testSemaphore];
+    [self testSemaphore];
 //    [self testMethodKVO];
 //    [self testTagedPointer];
 //    [self testRunLoop];
 //    [self testBlock];
-    [self testGCD];
+//    [self testGCD];
 }
 
 - (void)testSemaphore {
     // 创建信号量，可以控制最大并发量，如设置为x，则最大并发为x
-    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
+    dispatch_semaphore_t sem = dispatch_semaphore_create(10);
     dispatch_queue_t queue = dispatch_queue_create("Wilson", DISPATCH_QUEUE_CONCURRENT);
     
     //同时执行100个任务，可能会创建很多子线程，单不会超过100，线程池中会出现重用
-     for (int i = 0; i < 100; i++) {
+     for (int i = 0; i < 10; i++) {
         dispatch_async(queue, ^{
             NSLog(@"当前线程--> %@", [NSThread currentThread]);
             //当前信号量-1
@@ -84,6 +87,25 @@
     dispatch_async(subQueue, ^{
         NSLog(@"当前线程为：%@",[NSThread currentThread]);
         [[NSNotificationCenter defaultCenter] postNotificationName:@"CViewControllerPost" object:nil userInfo:nil];
+    });
+}
+
+- (void)clickFVC {
+    FVC *vc = [[FVC alloc] init];
+    
+    __weak typeof(self)weakSelf = self;
+    vc.block = ^{
+        __strong __typeof(weakSelf)strongSelf = weakSelf;
+        NSLog(@"执行回调");
+        [strongSelf blockInvoke];
+        
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)blockInvoke {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSLog(@"block回调延时任务执行");
     });
 }
 

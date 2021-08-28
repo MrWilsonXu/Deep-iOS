@@ -70,6 +70,10 @@ class ViewController: UIViewController {
         show(vc, sender: nil)
     }
     
+    @IBAction func showCVC(_ sender: UIButton) {
+        let vc = CViewController()
+        show(vc, sender: nil)
+    }
     @IBAction func click(_ sender: Any) {
         ball.backgroundColor = UIColor.black
         view.layoutIfNeeded()
