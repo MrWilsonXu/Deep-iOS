@@ -7,6 +7,8 @@
 //
 
 #import "RunLoop_RuntimeVC.h"
+#import "LXDBacktraceLogger.h"
+#import "LXDAppFluecyMonitor.h"
 
 @interface RunLoop_RuntimeVC ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -36,6 +38,8 @@ CFRunLoopObserverRef __mainObserver;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[LXDAppFluecyMonitor sharedMonitor] startMonitoring];
 
     self.textView.frame = CGRectMake(0, 88, 100, 40);
     self.tableView.frame = CGRectMake(0, 130, 200, 500);
@@ -44,7 +48,6 @@ CFRunLoopObserverRef __mainObserver;
     [self.view addSubview:self.tableView];
     self.view.backgroundColor = [UIColor orangeColor];
     self.title = @"RunLoop和Runtime";
-    [self startMainRunLoopObserver];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -78,23 +81,23 @@ CFRunLoopObserverRef __mainObserver;
                 CFRelease(mode);
                 break;
             }
-            
+
             case kCFRunLoopBeforeTimers:
                 NSLog(@"kCFRunLoopBeforeTimers- %@", mode);
                 break;
-                
+
             case kCFRunLoopBeforeSources:
                 NSLog(@"kCFRunLoopBeforeSources- %@", mode);
                 break;
-                
+
             case kCFRunLoopBeforeWaiting:
                 NSLog(@"kCFRunLoopBeforeWaiting- %@", mode);
                 break;
-                
+
             case kCFRunLoopAfterWaiting:
                 NSLog(@"kCFRunLoopAfterWaiting - %@", mode);
                 break;
-                
+
             case kCFRunLoopExit: {
                 NSLog(@"kCFRunLoopExit - %@", mode);
                 CFRelease(mode);
@@ -174,12 +177,15 @@ void observeRunLoopActicities(CFRunLoopObserverRef observer, CFRunLoopActivity a
 #pragma mark - Delegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return 200;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(UITableViewCell.class) forIndexPath:indexPath];
     cell.textLabel.text = [NSString stringWithFormat:@"第%ld行",indexPath.row+1];
+    if (indexPath.row > 0 && indexPath.row % 30 == 0) {
+        usleep(2000000);
+    }
     return cell;
 }
 
