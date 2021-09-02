@@ -8,16 +8,19 @@
 
 #import "RunLoop_RuntimeVC.h"
 
-@interface RunLoop_RuntimeVC ()
+@interface RunLoop_RuntimeVC ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITextView *textView;
-@property (nonatomic, strong) dispatch_queue_t wilson_queue;
+@property (nonatomic, strong) UITableView *tableView;
+
+@property (nonatomic, strong, readonly) dispatch_queue_t wilson_queue;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) NSInteger times;
 
 @end
 
-CFRunLoopObserverRef __observer;
+CFRunLoopObserverRef __asyncObserver;
+CFRunLoopObserverRef __mainObserver;
 
 @implementation RunLoop_RuntimeVC
 
@@ -31,10 +34,96 @@ CFRunLoopObserverRef __observer;
     self.timer = nil;
 }
 
-NSMutableDictionary *runloops;
+- (void)viewDidLoad {
+    [super viewDidLoad];
 
-void observeRunLoopActicities(CFRunLoopObserverRef observer, CFRunLoopActivity activity, void *info)
+    self.textView.frame = CGRectMake(0, 88, 100, 40);
+    self.tableView.frame = CGRectMake(0, 130, 200, 500);
+    self.tableView.backgroundColor = UIColor.orangeColor;
+    [self.view addSubview:self.textView];
+    [self.view addSubview:self.tableView];
+    self.view.backgroundColor = [UIColor orangeColor];
+    self.title = @"RunLoop和Runtime";
+    [self startMainRunLoopObserver];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
+    return;
+    
+    // 测试子线程 runloop 保活
+    dispatch_async(self.wilson_queue, ^{
+        self.timer = [NSTimer timerWithTimeInterval:2.0 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
+        // NSMachPort 相当于是添加 sources1事件
+        [[NSRunLoop currentRunLoop] addPort:[NSMachPort port] forMode:NSRunLoopCommonModes];
+        
+        // kCFRunLoopCommonModes标识：包括kCFRunLoopDefaultMode、UITrackingRunLoopMode
+        [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+
+        // 任务完成，runloop退出
+        NSLog(@"currentRunLoop ---> 退出 --> %@",[NSRunLoop currentRunLoop]);
+    });
+}
+
+#pragma mark - RunLoop
+
+- (void)startMainRunLoopObserver {
+    // 创建 block 的Observer
+    __mainObserver = CFRunLoopObserverCreateWithHandler(kCFAllocatorDefault, kCFRunLoopAllActivities, YES, 0, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
+        CFRunLoopMode mode = CFRunLoopCopyCurrentMode(CFRunLoopGetCurrent());
+        switch (activity) {
+            case kCFRunLoopEntry: {
+                NSLog(@"kCFRunLoopEntry - %@", mode);
+                CFRelease(mode);
+                break;
+            }
+            
+            case kCFRunLoopBeforeTimers:
+                NSLog(@"kCFRunLoopBeforeTimers- %@", mode);
+                break;
+                
+            case kCFRunLoopBeforeSources:
+                NSLog(@"kCFRunLoopBeforeSources- %@", mode);
+                break;
+                
+            case kCFRunLoopBeforeWaiting:
+                NSLog(@"kCFRunLoopBeforeWaiting- %@", mode);
+                break;
+                
+            case kCFRunLoopAfterWaiting:
+                NSLog(@"kCFRunLoopAfterWaiting - %@", mode);
+                break;
+                
+            case kCFRunLoopExit: {
+                NSLog(@"kCFRunLoopExit - %@", mode);
+                CFRelease(mode);
+                break;
+            }
+
+            default:
+                break;
+        }
+    });
+    // 添加Observer到RunLoop中
+    CFRunLoopAddObserver(CFRunLoopGetCurrent(), __mainObserver, kCFRunLoopCommonModes);
+    // 释放
+    CFRelease(__mainObserver);
+}
+
+- (void)startAsyncObserver {
+    dispatch_async(self.wilson_queue, ^{
+        NSLog(@"当前线程--> %@", [NSThread currentThread]);
+        // 创建回调方法的 Observer
+        __asyncObserver = CFRunLoopObserverCreate(kCFAllocatorDefault, kCFRunLoopAllActivities, YES, 0, observeRunLoopActicities, NULL);
+        // 添加Observer到RunLoop中
+        CFRunLoopAddObserver(CFRunLoopGetCurrent(), __asyncObserver, kCFRunLoopCommonModes);
+        // 释放
+        CFRelease(__asyncObserver);
+    });
+}
+
+void observeRunLoopActicities(CFRunLoopObserverRef observer, CFRunLoopActivity activity, void *info) {
     switch (activity) {
         case kCFRunLoopEntry: {
             NSLog(@"kCFRunLoopEntry");
@@ -67,95 +156,6 @@ void observeRunLoopActicities(CFRunLoopObserverRef observer, CFRunLoopActivity a
     }
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    [self.view addSubview:self.textView];
-    self.view.backgroundColor = [UIColor orangeColor];
-    self.title = @"RunLoop和Runtime";
-    
-//    NSRunLoop *runloop;
-//    CFRunLoopRef runloop2;
-    
-//    runloops[thread] = runloop;
-    
-//    NSRunLoop *runloop = [NSRunLoop currentRunLoop];
-//    CFRunLoopRef runloop2 = CFRunLoopGetCurrent();
-    
-//    NSArray *array;
-//    CFArrayRef arry2;
-//
-//    NSString *string;
-//    CFStringRef string2;
-    
-//    NSLog(@"%p %p", [NSRunLoop currentRunLoop], [NSRunLoop mainRunLoop]);
-//    NSLog(@"%p %p", CFRunLoopGetCurrent(), CFRunLoopGetMain());
-    
-    // 有序的
-//    NSMutableArray *array;
-//    [array addObject:@"123"];
-//    array[0];
-    
-    // 无序的
-//    NSMutableSet *set;
-//    [set addObject:@"123"];
-//    [set anyObject];
-//
-//    kCFRunLoopDefaultMode;
-//    NSDefaultRunLoopMode;
-//    NSLog(@"%@", [NSRunLoop mainRunLoop]);
-
-    
-    // kCFRunLoopCommonModes默认包括kCFRunLoopDefaultMode、UITrackingRunLoopMode
-    self.wilson_queue = dispatch_queue_create("wilson_queue", DISPATCH_QUEUE_SERIAL);
-    
-    dispatch_async(self.wilson_queue, ^{
-        NSLog(@"当前线程--> %@", [NSThread currentThread]);
-        // 创建Observer 1
-        __observer = CFRunLoopObserverCreate(kCFAllocatorDefault, kCFRunLoopAllActivities, YES, 0, observeRunLoopActicities, NULL);
-        
-        // 创建 block 的Observer
-//        CFRunLoopObserverRef observer = CFRunLoopObserverCreateWithHandler(kCFAllocatorDefault, kCFRunLoopAllActivities, YES, 0, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
-//            switch (activity) {
-//                case kCFRunLoopEntry: {
-//                    CFRunLoopMode mode = CFRunLoopCopyCurrentMode(CFRunLoopGetCurrent());
-//                    NSLog(@"kCFRunLoopEntry - %@", mode);
-//                    CFRelease(mode);
-//                    break;
-//                }
-//
-//                case kCFRunLoopExit: {
-//                    CFRunLoopMode mode = CFRunLoopCopyCurrentMode(CFRunLoopGetCurrent());
-//                    NSLog(@"kCFRunLoopExit - %@", mode);
-//                    CFRelease(mode);
-//                    break;
-//                }
-//
-//                default:
-//                    break;
-//            }
-//        });
-        // 添加Observer到RunLoop中
-        CFRunLoopAddObserver(CFRunLoopGetCurrent(), __observer, kCFRunLoopCommonModes);
-        // 释放
-        CFRelease(__observer);
-    });
-}
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
-    dispatch_async(self.wilson_queue, ^{
-        self.timer = [NSTimer timerWithTimeInterval:2.0 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
-        // NSMachPort 相当于是添加 sources1事件
-//        [[NSRunLoop currentRunLoop] addPort:[NSMachPort port] forMode:NSRunLoopCommonModes];
-        [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
-        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-
-        // 任务完成，runloop退出
-        NSLog(@"currentRunLoop ---> 退出 --> %@",[NSRunLoop currentRunLoop]);
-    });
-}
-
 - (void)timerAction {
     NSLog(@"定时器触发");
     ++self.times;
@@ -171,13 +171,51 @@ void observeRunLoopActicities(CFRunLoopObserverRef observer, CFRunLoopActivity a
     }
 }
 
+#pragma mark - Delegate
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 20;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(UITableViewCell.class) forIndexPath:indexPath];
+    cell.textLabel.text = [NSString stringWithFormat:@"第%ld行",indexPath.row+1];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"选择了第%ld行", indexPath.row);
+    sleep(3);
+    [self.tableView reloadData];
+    NSLog(@"tableView reloadData");
+}
+
 #pragma mark - Getter
+
+- (dispatch_queue_t)wilson_queue {
+    return dispatch_queue_create("wilson_queue", DISPATCH_QUEUE_SERIAL);
+}
 
 - (UITextView *)textView {
     if (!_textView) {
-        _textView = [[UITextView alloc] initWithFrame:CGRectMake(10, 100, 150, 200)];
+        _textView = [[UITextView alloc] init];
     }
     return _textView;
+}
+
+- (UITableView *)tableView {
+    if (!_tableView) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.rowHeight = UITableViewAutomaticDimension;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.estimatedRowHeight = 68;
+        _tableView.bounces = NO;
+        _tableView.showsVerticalScrollIndicator = NO;
+        [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
+    }
+    return _tableView;
 }
 
 @end
