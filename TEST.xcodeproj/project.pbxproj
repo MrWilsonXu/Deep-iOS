@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,7 +16,6 @@
 		C83ACB8B242269DC00B53E40 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = C83ACB8A242269DC00B53E40 /* Person.m */; };
 		C83ACB8E24226A5800B53E40 /* CViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C83ACB8D24226A5800B53E40 /* CViewController.m */; };
 		C8439BA426D8F73D00538B60 /* FVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C8439BA326D8F73D00538B60 /* FVC.m */; };
-		C84707B1247293420091CA45 /* DVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C84707B0247293420091CA45 /* DVC.swift */; };
 		C84DDDBD26BFB7C6006F8040 /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C84DDDBC26BFB7C6006F8040 /* CustomButton.m */; };
 		C855FB3226D28EBA00B2B29A /* MJPermenantThread.m in Sources */ = {isa = PBXBuildFile; fileRef = C855FB3026D28EBA00B2B29A /* MJPermenantThread.m */; };
 		C8732157241FB79C00DE6C17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8732156241FB79C00DE6C17 /* AppDelegate.swift */; };
@@ -47,7 +46,6 @@
 		C83ACB8D24226A5800B53E40 /* CViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CViewController.m; sourceTree = "<group>"; };
 		C8439BA226D8F73D00538B60 /* FVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FVC.h; sourceTree = "<group>"; };
 		C8439BA326D8F73D00538B60 /* FVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FVC.m; sourceTree = "<group>"; };
-		C84707B0247293420091CA45 /* DVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DVC.swift; sourceTree = "<group>"; };
 		C84DDDBB26BFB7C6006F8040 /* CustomButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
 		C84DDDBC26BFB7C6006F8040 /* CustomButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
 		C855FB3026D28EBA00B2B29A /* MJPermenantThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPermenantThread.m; sourceTree = "<group>"; };
@@ -169,7 +167,6 @@
 				C8439BA326D8F73D00538B60 /* FVC.m */,
 				41E53B9326CE63AB00BD6AE9 /* RunLoop_RuntimeVC.h */,
 				41E53B9426CE63AB00BD6AE9 /* RunLoop_RuntimeVC.m */,
-				C84707B0247293420091CA45 /* DVC.swift */,
 				C873215C241FB79C00DE6C17 /* Main.storyboard */,
 				C873215F241FB79D00DE6C17 /* Assets.xcassets */,
 				C8732161241FB79D00DE6C17 /* LaunchScreen.storyboard */,
@@ -286,7 +283,6 @@
 				C84DDDBD26BFB7C6006F8040 /* CustomButton.m in Sources */,
 				41E53B8E26CE31D500BD6AE9 /* YSProxy.m in Sources */,
 				4117F72626E0C6AB008EFD3F /* LXDBacktraceLogger.m in Sources */,
-				C84707B1247293420091CA45 /* DVC.swift in Sources */,
 				C83ACB8B242269DC00B53E40 /* Person.m in Sources */,
 				41E53B9526CE63AB00BD6AE9 /* RunLoop_RuntimeVC.m in Sources */,
 				C8732157241FB79C00DE6C17 /* AppDelegate.swift in Sources */,

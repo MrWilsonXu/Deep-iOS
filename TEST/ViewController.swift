@@ -66,8 +66,7 @@ class ViewController: UIViewController {
         }
     }
     @IBAction func push(_ sender: Any) {
-        let vc = DVC()
-        show(vc, sender: nil)
+        
     }
     
     @IBAction func showCVC(_ sender: UIButton) {
