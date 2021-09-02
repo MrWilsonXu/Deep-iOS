@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1B6F99C33E0806E26B46A42C /* Pods_TEST.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45999623B6E98CB1F75EF754 /* Pods_TEST.framework */; };
+		4117F72626E0C6AB008EFD3F /* LXDBacktraceLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 4117F72226E0C6AB008EFD3F /* LXDBacktraceLogger.m */; };
+		4117F72726E0C6AB008EFD3F /* LXDAppFluecyMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4117F72526E0C6AB008EFD3F /* LXDAppFluecyMonitor.m */; };
 		41E53B8D26CE31D500BD6AE9 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E53B8B26CE31D500BD6AE9 /* Student.m */; };
 		41E53B8E26CE31D500BD6AE9 /* YSProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E53B8C26CE31D500BD6AE9 /* YSProxy.m */; };
 		41E53B9526CE63AB00BD6AE9 /* RunLoop_RuntimeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E53B9426CE63AB00BD6AE9 /* RunLoop_RuntimeVC.m */; };
@@ -25,6 +27,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4117F72226E0C6AB008EFD3F /* LXDBacktraceLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXDBacktraceLogger.m; sourceTree = "<group>"; };
+		4117F72326E0C6AB008EFD3F /* LXDBacktraceLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXDBacktraceLogger.h; sourceTree = "<group>"; };
+		4117F72426E0C6AB008EFD3F /* LXDAppFluecyMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LXDAppFluecyMonitor.h; sourceTree = "<group>"; };
+		4117F72526E0C6AB008EFD3F /* LXDAppFluecyMonitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LXDAppFluecyMonitor.m; sourceTree = "<group>"; };
 		41E53B8926CE31D500BD6AE9 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
 		41E53B8A26CE31D500BD6AE9 /* YSProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSProxy.h; sourceTree = "<group>"; };
 		41E53B8B26CE31D500BD6AE9 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
@@ -79,6 +85,33 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4117F63E26E0C4D5008EFD3F /* ThirdPart */ = {
+			isa = PBXGroup;
+			children = (
+				4117F72026E0C6AB008EFD3F /* LXDAppFluecyMonitor */,
+			);
+			path = ThirdPart;
+			sourceTree = "<group>";
+		};
+		4117F72026E0C6AB008EFD3F /* LXDAppFluecyMonitor */ = {
+			isa = PBXGroup;
+			children = (
+				4117F72126E0C6AB008EFD3F /* Backtrace */,
+				4117F72426E0C6AB008EFD3F /* LXDAppFluecyMonitor.h */,
+				4117F72526E0C6AB008EFD3F /* LXDAppFluecyMonitor.m */,
+			);
+			path = LXDAppFluecyMonitor;
+			sourceTree = "<group>";
+		};
+		4117F72126E0C6AB008EFD3F /* Backtrace */ = {
+			isa = PBXGroup;
+			children = (
+				4117F72226E0C6AB008EFD3F /* LXDBacktraceLogger.m */,
+				4117F72326E0C6AB008EFD3F /* LXDBacktraceLogger.h */,
+			);
+			path = Backtrace;
+			sourceTree = "<group>";
+		};
 		418A21BF26B8E1C9007D1AC1 /* Object */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,6 +159,7 @@
 		C8732155241FB79C00DE6C17 /* TEST */ = {
 			isa = PBXGroup;
 			children = (
+				4117F63E26E0C4D5008EFD3F /* ThirdPart */,
 				418A21BF26B8E1C9007D1AC1 /* Object */,
 				C8732156241FB79C00DE6C17 /* AppDelegate.swift */,
 				C873215A241FB79C00DE6C17 /* ViewController.swift */,
@@ -156,7 +190,6 @@
 				C873214F241FB79B00DE6C17 /* Sources */,
 				C8732150241FB79B00DE6C17 /* Frameworks */,
 				C8732151241FB79B00DE6C17 /* Resources */,
-				D24DE26BC3695606F2C3208B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -237,23 +270,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D24DE26BC3695606F2C3208B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TEST/Pods-TEST-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-TEST/Pods-TEST-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TEST/Pods-TEST-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -263,11 +279,13 @@
 			files = (
 				C8439BA426D8F73D00538B60 /* FVC.m in Sources */,
 				C873215B241FB79C00DE6C17 /* ViewController.swift in Sources */,
+				4117F72726E0C6AB008EFD3F /* LXDAppFluecyMonitor.m in Sources */,
 				C855FB3226D28EBA00B2B29A /* MJPermenantThread.m in Sources */,
 				C83ACB8E24226A5800B53E40 /* CViewController.m in Sources */,
 				41E53B8D26CE31D500BD6AE9 /* Student.m in Sources */,
 				C84DDDBD26BFB7C6006F8040 /* CustomButton.m in Sources */,
 				41E53B8E26CE31D500BD6AE9 /* YSProxy.m in Sources */,
+				4117F72626E0C6AB008EFD3F /* LXDBacktraceLogger.m in Sources */,
 				C84707B1247293420091CA45 /* DVC.swift in Sources */,
 				C83ACB8B242269DC00B53E40 /* Person.m in Sources */,
 				41E53B9526CE63AB00BD6AE9 /* RunLoop_RuntimeVC.m in Sources */,

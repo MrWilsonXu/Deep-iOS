@@ -56,29 +56,40 @@
 }
 
 - (void)testSemaphore {
-    // 创建信号量，可以控制最大并发量，如设置为x，则最大并发为x
-    dispatch_semaphore_t sem = dispatch_semaphore_create(10);
-    dispatch_queue_t queue = dispatch_queue_create("Wilson", DISPATCH_QUEUE_CONCURRENT);
+    //使用GCD的信号量 dispatch_semaphore_t 结合 dispatch_group_async 创建同步请求，控制请求顺序等操作
+    dispatch_group_t group = dispatch_group_create();
+    dispatch_queue_t globalQueue = dispatch_get_global_queue(0, 0);
     
-    //同时执行100个任务，可能会创建很多子线程，单不会超过100，线程池中会出现重用
-     for (int i = 0; i < 10; i++) {
-        dispatch_async(queue, ^{
-            NSLog(@"当前线程--> %@", [NSThread currentThread]);
-            //当前信号量-1
-            dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
-                    
-            NSLog(@"任务%d执行",i+1);
-                    
-            NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:@"https://upload-images.jianshu.io/upload_images/1721232-1ba01fe953f04eee.png"]];
-
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"执行刷新页面%@",data);
-            });
-                    
-            //当前信号量+1
-            dispatch_semaphore_signal(sem);
+    dispatch_group_async(group, globalQueue, ^{
+        dispatch_semaphore_t semaphoreA = dispatch_semaphore_create(0);
+        
+        //模拟网络多线程耗时操作
+        dispatch_group_async(group, globalQueue, ^{
+            sleep(3);
+            NSLog(@"模拟网络请求%@---block1结束。。。",[NSThread currentThread]);
+            dispatch_semaphore_signal(semaphoreA);
         });
-    }
+        NSLog(@"%@---1结束。。。",[NSThread currentThread]);
+        dispatch_semaphore_wait(semaphoreA, DISPATCH_TIME_FOREVER);
+    });
+    
+    dispatch_group_async(group, globalQueue, ^{
+        dispatch_semaphore_t semaphoreB = dispatch_semaphore_create(0);
+        
+        //模拟网络多线程耗时操作
+        dispatch_group_async(group, globalQueue, ^{
+            sleep(5);
+            NSLog(@"模拟网络请求%@---block2结束。。。",[NSThread currentThread]);
+            dispatch_semaphore_signal(semaphoreB);
+        });
+        
+        NSLog(@"%@---2结束。。。",[NSThread currentThread]);
+        dispatch_semaphore_wait(semaphoreB, DISPATCH_TIME_FOREVER);
+    });
+
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        NSLog(@"全部任务完成结束--%@",[NSThread currentThread]);
+    });
 }
 
 - (void)clickSend {
