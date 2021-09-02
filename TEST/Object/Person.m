@@ -18,7 +18,7 @@
 
     if ([_name isEqualToString:name]) return;
     //手动触发 关闭自动监听之后，如果不写下面三行代码是不会触发监听的，
-    //要是打开自动监听的话，willChangeValueForKey didChangeValueForKey可以不用不写的，系统会自动加上
+    //要是打开自动监听的话，willChangeValueForKey didChangeValueForKey可以不用写，系统会自动加上
     [self willChangeValueForKey:@"name"];
     _name = name;
     [self didChangeValueForKey:@"name"];
