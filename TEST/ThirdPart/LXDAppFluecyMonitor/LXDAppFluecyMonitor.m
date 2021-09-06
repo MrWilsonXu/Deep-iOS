@@ -147,6 +147,7 @@ static void lxdRunLoopObserverCallback(CFRunLoopObserverRef observer, CFRunLoopA
                     timeOut = NO;
                     dispatch_semaphore_signal(SHAREDMONITOR.eventSemphore);
                 });
+                // 休眠时间需要和设置的卡顿时间相同，否则 timeOut 永远都是 YES
                 [NSThread sleepForTimeInterval: lxd_time_out_interval];
                 if (timeOut) {
                     [LXDBacktraceLogger lxd_logMain];
