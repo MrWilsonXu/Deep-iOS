@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^FBlock) (void);
 
-@interface FVC : UIViewController
+@interface MethodVC : UIViewController
 
 @property (nonatomic, copy) FBlock block;
 

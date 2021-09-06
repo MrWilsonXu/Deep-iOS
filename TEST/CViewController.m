@@ -10,7 +10,7 @@
 #import "objc/runtime.h"
 #import "Person.h"
 #import "CustomButton.h"
-#import "FVC.h"
+#import "MethodVC.h"
 
 @interface CViewController ()
 
@@ -102,7 +102,7 @@
 }
 
 - (void)clickFVC {
-    FVC *vc = [[FVC alloc] init];
+    MethodVC *vc = [[MethodVC alloc] init];
     
     __weak typeof(self)weakSelf = self;
     vc.block = ^{

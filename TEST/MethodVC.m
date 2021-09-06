@@ -6,13 +6,13 @@
 //  Copyright © 2021 Wilson. All rights reserved.
 //
 
-#import "FVC.h"
+#import "MethodVC.h"
 
-@interface FVC ()
+@interface MethodVC ()
 
 @end
 
-@implementation FVC
+@implementation MethodVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
