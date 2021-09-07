@@ -9,6 +9,7 @@
 #import "CViewController.h"
 #import "objc/runtime.h"
 #import "Person.h"
+#import "Student.h"
 #import "CustomButton.h"
 #import "MethodVC.h"
 
@@ -20,6 +21,9 @@
 @property(strong, nonatomic) Person *p1;
 @property (nonatomic, strong) CustomButton *customBtn;
 @property (nonatomic, strong) NSMutableArray *testBlockArray;
+
+// 测试assign修饰对象
+@property (nonatomic, assign) Person *assignPerson;
 
 @end
 
@@ -53,6 +57,8 @@
 //    [self testRunLoop];
 //    [self testBlock];
 //    [self testGCD];
+//    [self testAssignPerson];
+    [self initializeMethod];
 }
 
 - (void)testSemaphore {
@@ -295,6 +301,33 @@
 
 - (void)asyncSelectorMethod {
     NSLog(@"7");
+}
+
+- (void)testAssignPerson {
+    NSLog(@"------------------测试assign修饰对象 begin ------------------");
+    self.assignPerson = [[Person alloc] init];
+//    self.assignPerson.name = @"wilson";
+//    NSLog(@"赋值后的name=%@",self.assignPerson.name);
+    
+    NSLog(@"------------------测试assign修饰对象 end -------------------");
+}
+
+- (void)initializeMethod {
+    NSLog(@"---initialize begin----");
+    [Person clsMethod];
+    NSLog(@"---Person had initialized----");
+    Student *std = [[Student alloc] init];
+    NSLog(@"---initialize end----");
+    
+    /** 伪代码
+     if (自己没有调用过initialize) {
+        if (父类没有调用过initialize) {
+            objc_msgSend([Person class], @selector(initialize));
+        }
+        // 调用自己的 initialize 方法，若没有找到方法，会沿着消息发送链从父类继续查找，父类initialize存在，则会被再次调用
+        objc_msgSend([Student class], @selector(initialize));
+     }
+     */
 }
 
 @end

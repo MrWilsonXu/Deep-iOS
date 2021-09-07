@@ -36,4 +36,8 @@
     }
 }
 
++ (void)clsMethod {
+    NSLog(@"Person 调用 clsMethod");
+}
+
 @end
