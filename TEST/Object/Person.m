@@ -54,4 +54,8 @@
     return [super resolveInstanceMethod:sel];
 }
 
++ (void)clsMethod {
+    NSLog(@"Person 调用 clsMethod");
+}
+
 @end
