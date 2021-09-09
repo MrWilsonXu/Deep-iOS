@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *gender;
 
+- (void)testResolveMethod;
+
 @end
 
 NS_ASSUME_NONNULL_END
