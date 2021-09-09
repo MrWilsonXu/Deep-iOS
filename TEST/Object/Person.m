@@ -7,6 +7,7 @@
 //
 
 #import "Person.h"
+#import <objc/runtime.h>
 
 @interface Person()
 
@@ -38,6 +39,23 @@
 
 + (void)clsMethod {
     NSLog(@"Person 调用 clsMethod");
+}
+
+- (void)otherMethod {
+    NSLog(@"动态方法解析成功");
+}
+
+#pragma mark - Method Handle
+
+/// 动态方法解析添加成功后就不会在执行
++ (BOOL)resolveInstanceMethod:(SEL)sel {
+    if (sel == @selector(testResolveMethod)) {
+        Method otherMethod = class_getInstanceMethod(self, @selector(otherMethod));
+        class_addMethod(self, sel, method_getImplementation(otherMethod), method_getTypeEncoding(otherMethod));
+        NSLog(@"动态方法解析：types=%s",method_getTypeEncoding(otherMethod));
+        return YES;
+    }
+    return [super resolveInstanceMethod:sel];
 }
 
 @end

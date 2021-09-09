@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *gender;
 
 + (void)clsMethod;
+- (void)testResolveMethod;
 
 @end
 

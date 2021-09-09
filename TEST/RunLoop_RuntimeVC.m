@@ -9,10 +9,11 @@
 #import "RunLoop_RuntimeVC.h"
 #import "LXDBacktraceLogger.h"
 #import "LXDAppFluecyMonitor.h"
+#import "Person.h"
 
 @interface RunLoop_RuntimeVC ()<UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, strong) UITextView *textView;
+@property (nonatomic, strong) UIButton *methodBtn;
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong, readonly) dispatch_queue_t wilson_queue;
@@ -41,10 +42,10 @@ CFRunLoopObserverRef __mainObserver;
     
     [[LXDAppFluecyMonitor sharedMonitor] startMonitoring];
 
-    self.textView.frame = CGRectMake(0, 88, 100, 40);
+    self.methodBtn.frame = CGRectMake(0, 88, 100, 40);
     self.tableView.frame = CGRectMake(0, 130, 200, 500);
     self.tableView.backgroundColor = UIColor.orangeColor;
-    [self.view addSubview:self.textView];
+    [self.view addSubview:self.methodBtn];
     [self.view addSubview:self.tableView];
     self.view.backgroundColor = [UIColor orangeColor];
     self.title = @"RunLoop和Runtime";
@@ -67,6 +68,11 @@ CFRunLoopObserverRef __mainObserver;
         // 任务完成，runloop退出
         NSLog(@"currentRunLoop ---> 退出 --> %@",[NSRunLoop currentRunLoop]);
     });
+}
+
+- (void)methodAction {
+    Person *p = [[Person alloc] init];
+    [p testResolveMethod];
 }
 
 #pragma mark - RunLoop
@@ -202,11 +208,13 @@ void observeRunLoopActicities(CFRunLoopObserverRef observer, CFRunLoopActivity a
     return dispatch_queue_create("wilson_queue", DISPATCH_QUEUE_SERIAL);
 }
 
-- (UITextView *)textView {
-    if (!_textView) {
-        _textView = [[UITextView alloc] init];
+- (UIButton *)methodBtn {
+    if (!_methodBtn) {
+        _methodBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+        [_methodBtn setTitle:@"消息发送" forState:UIControlStateNormal];
+        [_methodBtn addTarget:self action:@selector(methodAction) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _textView;
+    return _methodBtn;
 }
 
 - (UITableView *)tableView {
