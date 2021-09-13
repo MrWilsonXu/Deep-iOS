@@ -18,6 +18,7 @@
 		414976F426E61A8C0032D2E6 /* MJStudent+Test1.m in Sources */ = {isa = PBXBuildFile; fileRef = 414976E526E61A8B0032D2E6 /* MJStudent+Test1.m */; };
 		414976F526E61A8C0032D2E6 /* MJPerson+Test1.m in Sources */ = {isa = PBXBuildFile; fileRef = 414976E726E61A8B0032D2E6 /* MJPerson+Test1.m */; };
 		414976F626E61A8C0032D2E6 /* MJDog.m in Sources */ = {isa = PBXBuildFile; fileRef = 414976EA26E61A8B0032D2E6 /* MJDog.m */; };
+		414976F926EC46070032D2E6 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 414976F826EC46070032D2E6 /* BaseViewController.m */; };
 		41E53B8D26CE31D500BD6AE9 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E53B8B26CE31D500BD6AE9 /* Student.m */; };
 		41E53B8E26CE31D500BD6AE9 /* YSProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E53B8C26CE31D500BD6AE9 /* YSProxy.m */; };
 		41E53B9526CE63AB00BD6AE9 /* RunLoop_RuntimeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E53B9426CE63AB00BD6AE9 /* RunLoop_RuntimeVC.m */; };
@@ -54,6 +55,8 @@
 		414976EC26E61A8C0032D2E6 /* MJDog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJDog.h; sourceTree = "<group>"; };
 		414976ED26E61A8C0032D2E6 /* MJPerson+Test2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MJPerson+Test2.h"; sourceTree = "<group>"; };
 		414976EE26E61A8C0032D2E6 /* MJStudent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJStudent.h; sourceTree = "<group>"; };
+		414976F726EC46070032D2E6 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		414976F826EC46070032D2E6 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		41E53B8926CE31D500BD6AE9 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
 		41E53B8A26CE31D500BD6AE9 /* YSProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSProxy.h; sourceTree = "<group>"; };
 		41E53B8B26CE31D500BD6AE9 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
@@ -209,6 +212,8 @@
 				418A21BF26B8E1C9007D1AC1 /* Object */,
 				C8732156241FB79C00DE6C17 /* AppDelegate.swift */,
 				C873215A241FB79C00DE6C17 /* ViewController.swift */,
+				414976F726EC46070032D2E6 /* BaseViewController.h */,
+				414976F826EC46070032D2E6 /* BaseViewController.m */,
 				C83ACB8C24226A5800B53E40 /* CViewController.h */,
 				C83ACB8D24226A5800B53E40 /* CViewController.m */,
 				C8439BA226D8F73D00538B60 /* MethodVC.h */,
@@ -341,6 +346,7 @@
 				414976EF26E61A8C0032D2E6 /* MJStudent+Test2.m in Sources */,
 				C83ACB8B242269DC00B53E40 /* Person.m in Sources */,
 				41E53B9526CE63AB00BD6AE9 /* RunLoop_RuntimeVC.m in Sources */,
+				414976F926EC46070032D2E6 /* BaseViewController.m in Sources */,
 				C8732157241FB79C00DE6C17 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

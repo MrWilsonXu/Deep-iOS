@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Person : NSObject{
     @public
-    int height;
+    int _height;
 }
 
 @property (nonatomic, copy) NSString *name;
@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *gender;
 
 - (void)testResolveMethod;
+- (void)testUnkonwMsg;
 + (void)clsMethod;
 
 @end

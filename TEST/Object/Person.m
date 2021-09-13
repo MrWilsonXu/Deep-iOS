@@ -37,8 +37,16 @@
     }
 }
 
-- (void)otherMethod {
+- (void)dynamicMsg {
     NSLog(@"动态方法解析成功");
+}
+
++ (void)clsMethod {
+    NSLog(@"Person 调用 clsMethod");
+}
+
+- (void)signatureMsg {
+    NSLog(@"消息转发-方法签名调用成功");
 }
 
 #pragma mark - Method Handle
@@ -46,7 +54,7 @@
 /// 动态方法解析添加成功后就不会在执行
 + (BOOL)resolveInstanceMethod:(SEL)sel {
     if (sel == @selector(testResolveMethod)) {
-        Method otherMethod = class_getInstanceMethod(self, @selector(otherMethod));
+        Method otherMethod = class_getInstanceMethod(self, @selector(dynamicMsg));
         class_addMethod(self, sel, method_getImplementation(otherMethod), method_getTypeEncoding(otherMethod));
         NSLog(@"动态方法解析：types=%s",method_getTypeEncoding(otherMethod));
         return YES;
@@ -54,8 +62,15 @@
     return [super resolveInstanceMethod:sel];
 }
 
-+ (void)clsMethod {
-    NSLog(@"Person 调用 clsMethod");
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector {
+    if ([self respondsToSelector:aSelector]) {
+        return [super methodSignatureForSelector:aSelector];
+    }
+    return [NSMethodSignature signatureWithObjCTypes:"v@:"];
+}
+
+- (void)forwardInvocation:(NSInvocation *)anInvocation {
+    NSLog(@"找不到%@方法的实现", NSStringFromSelector(anInvocation.selector));
 }
 
 @end

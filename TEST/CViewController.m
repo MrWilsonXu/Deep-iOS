@@ -228,7 +228,7 @@
     [self printPersonMethods:cls1];
     [self printPersonMethods:cls2];
     
-    self.p1 -> height;
+    self.p1 -> _height;
     //属性值改变时，自动触发kvo
 //    self.p1.name = @"jack";
     //手动触发kvo

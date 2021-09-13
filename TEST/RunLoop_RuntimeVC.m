@@ -10,6 +10,8 @@
 #import "LXDBacktraceLogger.h"
 #import "LXDAppFluecyMonitor.h"
 #import "Person.h"
+#import "Student.h"
+#import <objc/runtime.h>
 
 @interface RunLoop_RuntimeVC ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -70,9 +72,43 @@ CFRunLoopObserverRef __mainObserver;
     });
 }
 
+#pragma mark - Runtime
+
 - (void)methodAction {
+    // 测试内部消息转发
     Person *p = [[Person alloc] init];
     [p testResolveMethod];
+    [p testUnkonwMsg];
+    
+    // runtime常用函数
+    NSLog(@"--------------runtime常用函数-------------");
+    Student *st = [[Student alloc] init];
+    NSLog(@"类对象Student地址：%p", [Student class]);
+    NSLog(@"实例对象Student地址：%p", st);
+    NSLog(@"实例对象运行时获取地址：%p", object_getClass(st));
+    NSLog(@"类对象运行时获取地址：%p（元类对象地址）", object_getClass([Student class]));
+    objc_getClass("person");
+    
+    // 动态创建类
+    NSLog(@"--------------动态创建类并且需要注册-------------");
+    Class newClass = objc_allocateClassPair([NSObject class], "YSDog", 0);
+    objc_registerClassPair(newClass);
+    id dog = [[newClass alloc] init];
+    
+    // 若已经注册过，则不能在添加成员变量
+    NSLog(@"动态创建Dog：%@",dog);
+    
+    NSLog(@"--------------获取成员变量-------------");
+    unsigned int count;
+    Ivar *ivars = class_copyIvarList([Person class], &count);
+    for (int i = 0; i < count; i++) {
+        Ivar ivar = ivars[i];
+        NSLog(@"成员变量：%s %s", ivar_getName(ivar), ivar_getTypeEncoding(ivar));
+    }
+    Ivar heightIvar = class_getInstanceVariable([Person class], "_height");
+    object_setIvar(p, heightIvar, (__bridge id)(void *)226);
+    NSLog(@"动态更改成员变量的值_height=%d", p->_height);
+    free(ivars);
 }
 
 #pragma mark - RunLoop
