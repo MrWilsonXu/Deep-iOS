@@ -15,6 +15,10 @@
 
 @implementation Person
 
+- (void)dealloc {
+    NSLog(@"--%s--", __func__);
+}
+
 - (void)setName:(NSString *)name            {
 
     if ([_name isEqualToString:name]) return;

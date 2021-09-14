@@ -55,15 +55,15 @@
 //    [self testMethodKVO];
 //    [self testTagedPointer];
 //    [self testRunLoop];
-//    [self testBlock];
+    [self testBlock];
 //    [self testGCD];
 //    [self testAssignPerson];
-    [self initializeMethod];
-    [self testRecursiveLock];
+//    [self initializeMethod];
+//    [self testRecursiveLock];
 }
 
 - (void)testSemaphore {
-    //使用GCD的信号量 dispatch_semaphore_t 结合 dispatch_group_async 创建同步请求，控制请求顺序等操作
+    NSLog(@"-------------使用GCD的信号量 dispatch_semaphore_t 结合 dispatch_group_async 创建同步请求，控制请求顺序等操作-----------");
     dispatch_group_t group = dispatch_group_create();
     dispatch_queue_t globalQueue = dispatch_get_global_queue(0, 0);
     
@@ -76,7 +76,6 @@
             NSLog(@"模拟网络请求%@---block1结束。。。",[NSThread currentThread]);
             dispatch_semaphore_signal(semaphoreA);
         });
-        NSLog(@"%@---1结束。。。",[NSThread currentThread]);
         dispatch_semaphore_wait(semaphoreA, DISPATCH_TIME_FOREVER);
     });
     
@@ -89,8 +88,6 @@
             NSLog(@"模拟网络请求%@---block2结束。。。",[NSThread currentThread]);
             dispatch_semaphore_signal(semaphoreB);
         });
-        
-        NSLog(@"%@---2结束。。。",[NSThread currentThread]);
         dispatch_semaphore_wait(semaphoreB, DISPATCH_TIME_FOREVER);
     });
 
@@ -147,8 +144,22 @@
     NSLog(@"%@--%@",old,new);
 }
 
+//block的内部结构
 - (void)testBlock {
-    //block的内部结构
+    void (^YSblock)(void);
+    
+    {
+        Person *p = [[Person alloc] init];
+        __weak typeof(p) weakPerson = p;
+        YSblock = ^{
+            weakPerson.name = @"kobe";
+            NSLog(@"打印了person对象名称：%@", weakPerson.name);
+        };
+        YSblock();
+        NSLog(@"大括号作用域将要退出");
+        
+    }
+    
     self.testBlockArray = [@[@"name"] mutableCopy];
     __weak typeof(self) weakSelf = self;
     
