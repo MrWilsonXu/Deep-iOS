@@ -59,6 +59,7 @@
 //    [self testGCD];
 //    [self testAssignPerson];
     [self initializeMethod];
+    [self testRecursiveLock];
 }
 
 - (void)testSemaphore {
@@ -328,6 +329,29 @@
         objc_msgSend([Student class], @selector(initialize));
      }
      */
+}
+
+- (void)testRecursiveLock {
+    NSLock *lock = [[NSLock alloc] init];
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
+        static void (^RecursiveMethod)(int);
+
+        RecursiveMethod = ^(int value) {
+
+            [lock lock];
+            if (value > 0) {
+
+                NSLog(@"value = %d", value);
+                sleep(2);
+                RecursiveMethod(value - 1);
+            }
+            [lock unlock];
+        };
+
+        RecursiveMethod(5);
+    });
 }
 
 @end

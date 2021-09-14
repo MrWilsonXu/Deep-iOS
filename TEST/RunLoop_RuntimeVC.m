@@ -16,6 +16,7 @@
 @interface RunLoop_RuntimeVC ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UIButton *methodBtn;
+@property (nonatomic, strong) UIButton *runloopBtn;
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong, readonly) dispatch_queue_t wilson_queue;
@@ -45,10 +46,13 @@ CFRunLoopObserverRef __mainObserver;
     [[LXDAppFluecyMonitor sharedMonitor] startMonitoring];
 
     self.methodBtn.frame = CGRectMake(0, 88, 100, 40);
+    self.runloopBtn.frame = CGRectMake(0, 200, 80, 40);
     self.tableView.frame = CGRectMake(0, 130, 200, 500);
     self.tableView.backgroundColor = UIColor.orangeColor;
+    
     [self.view addSubview:self.methodBtn];
     [self.view addSubview:self.tableView];
+    
     self.view.backgroundColor = [UIColor orangeColor];
     self.title = @"RunLoop和Runtime";
 }
@@ -72,7 +76,7 @@ CFRunLoopObserverRef __mainObserver;
     });
 }
 
-#pragma mark - Runtime
+#pragma mark - Action
 
 - (void)methodAction {
     // 测试内部消息转发
@@ -109,6 +113,10 @@ CFRunLoopObserverRef __mainObserver;
     object_setIvar(p, heightIvar, (__bridge id)(void *)226);
     NSLog(@"动态更改成员变量的值_height=%d", p->_height);
     free(ivars);
+}
+
+- (void)runloopAction {
+    [self startAsyncObserver];
 }
 
 #pragma mark - RunLoop
@@ -251,6 +259,15 @@ void observeRunLoopActicities(CFRunLoopObserverRef observer, CFRunLoopActivity a
         [_methodBtn addTarget:self action:@selector(methodAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _methodBtn;
+}
+
+- (UIButton *)runloopBtn {
+    if (!_runloopBtn) {
+        _runloopBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+        [_runloopBtn setTitle:@"runloop监听" forState:UIControlStateNormal];
+        [_runloopBtn addTarget:self action:@selector(runloopAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _runloopBtn;
 }
 
 - (UITableView *)tableView {
