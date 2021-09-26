@@ -19,7 +19,7 @@
 @property (nonatomic, strong) UIButton *runloopBtn;
 @property (nonatomic, strong) UITableView *tableView;
 
-@property (nonatomic, strong, readonly) dispatch_queue_t wilson_queue;
+@property (nonatomic, readonly, strong) dispatch_queue_t wilson_queue;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, assign) NSInteger times;
 
@@ -74,6 +74,8 @@ CFRunLoopObserverRef __mainObserver;
         // 任务完成，runloop退出
         NSLog(@"currentRunLoop ---> 退出 --> %@",[NSRunLoop currentRunLoop]);
     });
+    
+    
 }
 
 #pragma mark - Action

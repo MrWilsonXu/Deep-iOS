@@ -55,7 +55,7 @@
 //    [self testMethodKVO];
 //    [self testTagedPointer];
 //    [self testRunLoop];
-    [self testBlock];
+//    [self testBlock];
 //    [self testGCD];
 //    [self testAssignPerson];
 //    [self initializeMethod];
