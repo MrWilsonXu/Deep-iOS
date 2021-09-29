@@ -48,7 +48,7 @@
     [self.customBtn addTarget:self action:@selector(clickCustomBtn) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.customBtn];
     UIBarButtonItem *noti = [[UIBarButtonItem alloc] initWithTitle:@"发送通知" style:UIBarButtonItemStylePlain target:self action:@selector(clickSend)];
-    UIBarButtonItem *showFVC = [[UIBarButtonItem alloc] initWithTitle:@"显示FVC" style:UIBarButtonItemStylePlain target:self action:@selector(clickFVC)];
+    UIBarButtonItem *showFVC = [[UIBarButtonItem alloc] initWithTitle:@"MethodVC" style:UIBarButtonItemStylePlain target:self action:@selector(clickFVC)];
     self.navigationItem.rightBarButtonItems = @[noti, showFVC];
     
     [self testSemaphore];
@@ -286,6 +286,7 @@
 
 - (void)testRunLoop {
 //    NSLog(@"打印主线程的RunLoop：\n %@", [NSRunLoop mainRunLoop]);
+    
 }
 
 - (void)testGCD {

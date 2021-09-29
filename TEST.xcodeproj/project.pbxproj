@@ -19,6 +19,7 @@
 		414976F526E61A8C0032D2E6 /* MJPerson+Test1.m in Sources */ = {isa = PBXBuildFile; fileRef = 414976E726E61A8B0032D2E6 /* MJPerson+Test1.m */; };
 		414976F626E61A8C0032D2E6 /* MJDog.m in Sources */ = {isa = PBXBuildFile; fileRef = 414976EA26E61A8B0032D2E6 /* MJDog.m */; };
 		414976F926EC46070032D2E6 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 414976F826EC46070032D2E6 /* BaseViewController.m */; };
+		419D78E427046D40004C494C /* Wilson.m in Sources */ = {isa = PBXBuildFile; fileRef = 419D78E327046D40004C494C /* Wilson.m */; };
 		41E53B8D26CE31D500BD6AE9 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E53B8B26CE31D500BD6AE9 /* Student.m */; };
 		41E53B8E26CE31D500BD6AE9 /* YSProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E53B8C26CE31D500BD6AE9 /* YSProxy.m */; };
 		41E53B9526CE63AB00BD6AE9 /* RunLoop_RuntimeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E53B9426CE63AB00BD6AE9 /* RunLoop_RuntimeVC.m */; };
@@ -57,6 +58,8 @@
 		414976EE26E61A8C0032D2E6 /* MJStudent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJStudent.h; sourceTree = "<group>"; };
 		414976F726EC46070032D2E6 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		414976F826EC46070032D2E6 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		419D78E227046D40004C494C /* Wilson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Wilson.h; sourceTree = "<group>"; };
+		419D78E327046D40004C494C /* Wilson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Wilson.m; sourceTree = "<group>"; };
 		41E53B8926CE31D500BD6AE9 /* Student.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Student.h; sourceTree = "<group>"; };
 		41E53B8A26CE31D500BD6AE9 /* YSProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSProxy.h; sourceTree = "<group>"; };
 		41E53B8B26CE31D500BD6AE9 /* Student.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Student.m; sourceTree = "<group>"; };
@@ -146,10 +149,10 @@
 				414976EA26E61A8B0032D2E6 /* MJDog.m */,
 				414976E926E61A8B0032D2E6 /* MJPerson.h */,
 				414976E026E61A8A0032D2E6 /* MJPerson.m */,
-				414976EB26E61A8B0032D2E6 /* MJPerson+Test1.h */,
-				414976E726E61A8B0032D2E6 /* MJPerson+Test1.m */,
 				414976ED26E61A8C0032D2E6 /* MJPerson+Test2.h */,
 				414976E226E61A8B0032D2E6 /* MJPerson+Test2.m */,
+				414976EB26E61A8B0032D2E6 /* MJPerson+Test1.h */,
+				414976E726E61A8B0032D2E6 /* MJPerson+Test1.m */,
 				414976EE26E61A8C0032D2E6 /* MJStudent.h */,
 				414976E126E61A8A0032D2E6 /* MJStudent.m */,
 				414976E326E61A8B0032D2E6 /* MJStudent+Test1.h */,
@@ -169,6 +172,8 @@
 				C83ACB8A242269DC00B53E40 /* Person.m */,
 				41E53B8926CE31D500BD6AE9 /* Student.h */,
 				41E53B8B26CE31D500BD6AE9 /* Student.m */,
+				419D78E227046D40004C494C /* Wilson.h */,
+				419D78E327046D40004C494C /* Wilson.m */,
 				41E53B8A26CE31D500BD6AE9 /* YSProxy.h */,
 				41E53B8C26CE31D500BD6AE9 /* YSProxy.m */,
 				C84DDDBB26BFB7C6006F8040 /* CustomButton.h */,
@@ -327,6 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				414976F026E61A8C0032D2E6 /* MJPerson.m in Sources */,
 				C8439BA426D8F73D00538B60 /* MethodVC.m in Sources */,
 				C873215B241FB79C00DE6C17 /* ViewController.swift in Sources */,
 				414976F426E61A8C0032D2E6 /* MJStudent+Test1.m in Sources */,
@@ -338,7 +344,6 @@
 				41E53B8D26CE31D500BD6AE9 /* Student.m in Sources */,
 				414976F226E61A8C0032D2E6 /* MJPerson+Test2.m in Sources */,
 				C84DDDBD26BFB7C6006F8040 /* CustomButton.m in Sources */,
-				414976F026E61A8C0032D2E6 /* MJPerson.m in Sources */,
 				41E53B8E26CE31D500BD6AE9 /* YSProxy.m in Sources */,
 				414976F126E61A8C0032D2E6 /* MJStudent.m in Sources */,
 				4117F72626E0C6AB008EFD3F /* LXDBacktraceLogger.m in Sources */,
@@ -346,6 +351,7 @@
 				414976EF26E61A8C0032D2E6 /* MJStudent+Test2.m in Sources */,
 				C83ACB8B242269DC00B53E40 /* Person.m in Sources */,
 				41E53B9526CE63AB00BD6AE9 /* RunLoop_RuntimeVC.m in Sources */,
+				419D78E427046D40004C494C /* Wilson.m in Sources */,
 				414976F926EC46070032D2E6 /* BaseViewController.m in Sources */,
 				C8732157241FB79C00DE6C17 /* AppDelegate.swift in Sources */,
 			);
