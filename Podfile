@@ -11,5 +11,6 @@ target 'TEST' do
           end
       end
   end
-  
+
+  pod 'SocketRocket', '~> 0.5.1'  
 end
