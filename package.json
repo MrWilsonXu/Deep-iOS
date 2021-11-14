@@ -1,4 +1,11 @@
 {
+  "name": "Deep_iOS",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "yarn react-native start"
+  },
+  
   "dependencies": {
     "package": "^1.0.1",
     "react": "17.0.2",
