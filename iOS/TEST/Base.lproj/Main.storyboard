@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oKR-Ko-yKn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oKR-Ko-yKn">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -45,10 +45,17 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sx3-h2-skP">
-                                <rect key="frame" x="136" y="517" width="142" height="30"/>
+                                <rect key="frame" x="136" y="493" width="142" height="30"/>
                                 <state key="normal" title="显示CViewController"/>
                                 <connections>
                                     <action selector="showCVC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f25-0M-0fy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5VY-lb-VgG">
+                                <rect key="frame" x="166" y="523" width="82" height="30"/>
+                                <state key="normal" title="显示RN视图"/>
+                                <connections>
+                                    <action selector="showRNView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gFD-b9-obz"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -58,11 +65,13 @@
                             <constraint firstItem="aC6-K7-Dxh" firstAttribute="top" secondItem="aGl-bZ-Fnc" secondAttribute="bottom" constant="8" id="2cA-sB-gkc"/>
                             <constraint firstItem="AWO-eN-haF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="63" id="5Wo-ZV-b4R"/>
                             <constraint firstItem="aGl-bZ-Fnc" firstAttribute="top" secondItem="06g-cz-ZP0" secondAttribute="bottom" constant="8" id="9zc-RU-e5T"/>
+                            <constraint firstItem="5VY-lb-VgG" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="GUH-CW-o6H"/>
                             <constraint firstItem="AWO-eN-haF" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="HNW-7b-oxc"/>
                             <constraint firstItem="aGl-bZ-Fnc" firstAttribute="top" secondItem="AWO-eN-haF" secondAttribute="bottom" constant="253" id="OfY-Yl-CCN"/>
-                            <constraint firstItem="sx3-h2-skP" firstAttribute="top" secondItem="aC6-K7-Dxh" secondAttribute="bottom" constant="24" id="TNr-Zu-cB6"/>
+                            <constraint firstItem="sx3-h2-skP" firstAttribute="top" secondItem="aC6-K7-Dxh" secondAttribute="bottom" id="TNr-Zu-cB6"/>
                             <constraint firstItem="aGl-bZ-Fnc" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="clX-a9-vcj"/>
                             <constraint firstItem="sx3-h2-skP" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="hXh-sQ-aDM"/>
+                            <constraint firstItem="5VY-lb-VgG" firstAttribute="top" secondItem="sx3-h2-skP" secondAttribute="bottom" id="pQ8-jS-qke"/>
                             <constraint firstItem="aC6-K7-Dxh" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="rgK-cl-Fs5"/>
                             <constraint firstItem="06g-cz-ZP0" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="vVe-HM-i3V"/>
                         </constraints>

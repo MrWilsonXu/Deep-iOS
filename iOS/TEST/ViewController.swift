@@ -110,6 +110,10 @@ class ViewController: UIViewController {
         let vc = RunLoop_RuntimeVC();
         show(vc, sender: nil);
     }
+    @IBAction func showRNView(_ sender: Any) {
+        let vc = RNScoreVC()
+        show(vc, sender: nil)
+    }
     
     func testGCDQueue() {
         /**

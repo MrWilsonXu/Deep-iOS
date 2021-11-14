@@ -23,6 +23,7 @@
 		41E53B8D26CE31D500BD6AE9 /* Student.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E53B8B26CE31D500BD6AE9 /* Student.m */; };
 		41E53B8E26CE31D500BD6AE9 /* YSProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E53B8C26CE31D500BD6AE9 /* YSProxy.m */; };
 		41E53B9526CE63AB00BD6AE9 /* RunLoop_RuntimeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 41E53B9426CE63AB00BD6AE9 /* RunLoop_RuntimeVC.m */; };
+		C802A641274149BF00859F11 /* RNScoreVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C802A640274149BE00859F11 /* RNScoreVC.m */; };
 		C83ACB8B242269DC00B53E40 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = C83ACB8A242269DC00B53E40 /* Person.m */; };
 		C83ACB8E24226A5800B53E40 /* CViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C83ACB8D24226A5800B53E40 /* CViewController.m */; };
 		C8439BA426D8F73D00538B60 /* MethodVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C8439BA326D8F73D00538B60 /* MethodVC.m */; };
@@ -69,6 +70,8 @@
 		45999623B6E98CB1F75EF754 /* Pods_TEST.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TEST.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6ACE38454128EF38F77CE40E /* Pods-TEST.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TEST.release.xcconfig"; path = "Target Support Files/Pods-TEST/Pods-TEST.release.xcconfig"; sourceTree = "<group>"; };
 		6FF5E8D3E0EFE7F12391362E /* Pods-TEST.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TEST.debug.xcconfig"; path = "Target Support Files/Pods-TEST/Pods-TEST.debug.xcconfig"; sourceTree = "<group>"; };
+		C802A63F274149BE00859F11 /* RNScoreVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RNScoreVC.h; sourceTree = "<group>"; };
+		C802A640274149BE00859F11 /* RNScoreVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RNScoreVC.m; sourceTree = "<group>"; };
 		C83ACB88242269DC00B53E40 /* TEST-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TEST-Bridging-Header.h"; sourceTree = "<group>"; };
 		C83ACB89242269DC00B53E40 /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		C83ACB8A242269DC00B53E40 /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
@@ -191,6 +194,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C802A63E274144A500859F11 /* RN */ = {
+			isa = PBXGroup;
+			children = (
+				C802A63F274149BE00859F11 /* RNScoreVC.h */,
+				C802A640274149BE00859F11 /* RNScoreVC.m */,
+			);
+			path = RN;
+			sourceTree = "<group>";
+		};
 		C873214A241FB79B00DE6C17 = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +224,7 @@
 		C8732155241FB79C00DE6C17 /* TEST */ = {
 			isa = PBXGroup;
 			children = (
+				C802A63E274144A500859F11 /* RN */,
 				414976DE26E61A500032D2E6 /* Category */,
 				4117F63E26E0C4D5008EFD3F /* ThirdPart */,
 				418A21BF26B8E1C9007D1AC1 /* Object */,
@@ -350,6 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C802A641274149BF00859F11 /* RNScoreVC.m in Sources */,
 				414976F026E61A8C0032D2E6 /* MJPerson.m in Sources */,
 				C8439BA426D8F73D00538B60 /* MethodVC.m in Sources */,
 				C873215B241FB79C00DE6C17 /* ViewController.swift in Sources */,
