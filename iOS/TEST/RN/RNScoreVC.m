@@ -7,7 +7,7 @@
 //
 
 #import "RNScoreVC.h"
-#import <React/RCTRootView.h>
+//#import <React/RCTRootView.h>
 
 @interface RNScoreVC ()
 
@@ -22,28 +22,28 @@
 
 - (void)showRNView {
     NSLog(@"RN High Score View is Load");
-    NSURL *jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.bundle?platform=ios"];
+//    NSURL *jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.bundle?platform=ios"];
 
-    RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL: jsCodeLocation
-                                                        moduleName: @"RNHighScores"
-                                                 initialProperties: @{
-                                                                       @"scores" : @[
-                                                                         @{
-                                                                             @"name" : @"Alex",
-                                                                             @"value": @"42"
-                                                                          },
-                                                                         @{
-                                                                             @"name" : @"Joel",
-                                                                             @"value": @"10"
-                                                                         },
-                                                                         @{
-                                                                             @"name" : @"Wilson",
-                                                                             @"value" : @"98"
-                                                                         }
-                                                                       ]
-                                                                     }
-                                                    launchOptions: nil];
-    self.view = rootView;
+//    RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL: jsCodeLocation
+//                                                        moduleName: @"RNHighScores"
+//                                                 initialProperties: @{
+//                                                                       @"scores" : @[
+//                                                                         @{
+//                                                                             @"name" : @"Alex",
+//                                                                             @"value": @"42"
+//                                                                          },
+//                                                                         @{
+//                                                                             @"name" : @"Joel",
+//                                                                             @"value": @"10"
+//                                                                         },
+//                                                                         @{
+//                                                                             @"name" : @"Wilson",
+//                                                                             @"value" : @"98"
+//                                                                         }
+//                                                                       ]
+//                                                                     }
+//                                                    launchOptions: nil];
+//    self.view = rootView;
 }
 
 /*
